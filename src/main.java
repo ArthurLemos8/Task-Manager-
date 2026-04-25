@@ -21,8 +21,12 @@ public class main {
                 case 4:
                     Task.removerTarefa();
                     break;
+                case 5:
+                    System.out.println("Encerrando o programa, obrigado!");
+                    break;
                 default:
-                    System.out.println("Obrigado por usar o sitema");
+                    System.out.println("Opção inválida, tente novamente!");
+                    System.out.println();
             }
         }
 

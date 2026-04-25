@@ -5,7 +5,7 @@ public class Task {
     int Id;
     String nameTask;
     boolean concluida;
-    
+
     static ArrayList<Task> tasks = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
 
@@ -16,7 +16,8 @@ public class Task {
         System.out.println("3 - Concluir tarefa");
         System.out.println("4 - Remover tarefa");
         System.out.println("5 - Sair");
-        System.out.print("Escolha: ");
+        System.out.println("=== ===");
+        System.out.print("Escolha uma ação: ");
     }
 
     public static void addTask() {
@@ -31,12 +32,17 @@ public class Task {
     }
 
     public static void Listasks() {
+        if (tasks.isEmpty()) {
+            System.out.println("Lista está vazia! Adicione tarefas!");
+            return;
+        }
+
         System.out.println("\nLista das tarefas: ");
         for (int i = 0; i < tasks.size(); i++) {
             Task tk = tasks.get(i);
-            System.out.println("ID: " + tk.Id + " Tarefa: " + tk.nameTask + " Status: " + tk.concluida);
+            System.out.println("ID: " + tk.Id + " Tarefa: " + tk.nameTask + " Status: "
+                    + (tk.concluida ? "Concluída " : "Pendente"));
         }
-       
     }
 
     public static void concludTasks() {
@@ -58,17 +64,23 @@ public class Task {
         }
     }
 
-        public static void removerTarefa(){
-            System.out.println("===============");
-              for (int i = 0; i < tasks.size(); i++) {
-                Task tk = tasks.get(i);
-            System.out.println("ID: " + tk.Id + " Tarefa: " + tk.nameTask + " Status: " + tk.concluida);
+    public static void removerTarefa() {
+        System.out.println("===============");
+        for (int i = 0; i < tasks.size(); i++) {
+            Task tk = tasks.get(i);
+            System.out.println("ID: " + tk.Id + " Tarefa: " + tk.nameTask + " Status: "
+                    + (tk.concluida ? "Concluída" : "Pendente"));
         }
+        System.out.println("===============");
         System.out.println("Digite o ID da tarefa que deseja remover: ");
         int id3 = Integer.parseInt(sc.nextLine());
-        tasks.removeIf(tk->tk.Id == id3);
-        System.out.println("Tarefa removida!");
+        if (tasks.removeIf(tk -> tk.Id == id3)) {
+            System.out.println("Tarefa removida!");
         }
 
-       
+        else {
+            System.out.println("Código id inválido!");
+        }
     }
+
+}
